@@ -1,0 +1,7 @@
+BASE_IMAGE_NAME=tuxdude/homelab-node-base
+BASE_IMAGE_TAG=master
+USER_NAME=homepage
+GROUP_NAME=homepage
+USER_ID=16021
+GROUP_ID=16021
+HOMEPAGE_VERSION=v0.9.6
