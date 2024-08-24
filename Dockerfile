@@ -77,9 +77,7 @@ RUN --mount=type=bind,target=/build,from=builder,source=/release \
 EXPOSE 3000
 
 HEALTHCHECK \
-    --start-period=15s \
-    --interval=30s \
-    --timeout=3s \
+    --start-period=15s --interval=30s --timeout=3s \
     CMD curl \
         --silent \
         --fail \
