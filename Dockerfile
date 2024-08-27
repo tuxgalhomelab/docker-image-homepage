@@ -84,7 +84,7 @@ HEALTHCHECK \
         --location \
         --show-error \
         --insecure \
-        https://localhost:3000/api/healthcheck
+        http://localhost:3000/api/healthcheck
 
 ENV NODE_ENV=production
 ENV WUD_VERSION="$HOMEPAGE_VERSION"
