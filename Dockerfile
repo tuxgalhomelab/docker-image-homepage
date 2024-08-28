@@ -13,6 +13,7 @@ ARG HOMEPAGE_VERSION
 # hadolint ignore=SC1091
 RUN \
     set -E -e -o pipefail \
+    && export HOMELAB_VERBOSE=y \
     # Set up node. \
     && source "${NVM_DIR:?}/nvm.sh" \
     # Install build dependencies. \
@@ -62,6 +63,7 @@ ARG HOMEPAGE_VERSION
 
 RUN --mount=type=bind,target=/build,from=builder,source=/release \
     set -E -e -o pipefail \
+    && export HOMELAB_VERBOSE=y \
     # Create the user and the group. \
     && homelab add-user \
         ${USER_NAME:?} \
