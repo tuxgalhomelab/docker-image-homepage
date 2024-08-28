@@ -78,13 +78,7 @@ EXPOSE 3000
 
 HEALTHCHECK \
     --start-period=15s --interval=30s --timeout=3s \
-    CMD curl \
-        --silent \
-        --fail \
-        --location \
-        --show-error \
-        --insecure \
-        http://localhost:3000/api/healthcheck
+    CMD homelab healthcheck-service http://localhost:3000/api/healthcheck
 
 ENV NODE_ENV=production
 ENV WUD_VERSION="$HOMEPAGE_VERSION"
