@@ -20,11 +20,9 @@ RUN \
     && homelab install git \
     && mkdir -p /root/homepage /root/homepage-deps \
     # Download homepage repo. \
-    && git clone \
-        --quiet \
-        --depth 1 \
-        --branch ${HOMEPAGE_VERSION:?} \
+    && homelab download-git-repo \
         https://github.com/gethomepage/homepage \
+        ${HOMEPAGE_VERSION:?} \
         /root/homepage \
     # Set up dependencies first. \
     && pushd /root/homepage-deps \
