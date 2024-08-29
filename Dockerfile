@@ -8,7 +8,7 @@ COPY scripts/start-homepage.sh /scripts/
 
 ARG HOMEPAGE_VERSION
 
-# hadolint ignore=SC1091
+# hadolint ignore=SC1091,SC3044
 RUN \
     set -E -e -o pipefail \
     && export HOMELAB_VERBOSE=y \
@@ -55,6 +55,7 @@ ARG USER_ID
 ARG GROUP_ID
 ARG HOMEPAGE_VERSION
 
+# hadolint ignore=SC3040
 RUN --mount=type=bind,target=/build,from=builder,source=/release \
     set -E -e -o pipefail \
     && export HOMELAB_VERBOSE=y \
