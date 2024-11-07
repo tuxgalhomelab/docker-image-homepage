@@ -1,4 +1,4 @@
-BASE_IMAGE_NAME=tuxdude/homelab-node-base
+BASE_IMAGE_NAME=tuxgal/homelab-node-base
 BASE_IMAGE_TAG=master
 USER_NAME=homepage
 GROUP_NAME=homepage
