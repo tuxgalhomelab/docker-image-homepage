@@ -1,5 +1,5 @@
 BASE_IMAGE_NAME=tuxgal/homelab-node-base
-BASE_IMAGE_TAG=master
+BASE_IMAGE_TAG=0.3.2-bookworm-20250224-slim-node-22.14.0
 USER_NAME=homepage
 GROUP_NAME=homepage
 USER_ID=16021
