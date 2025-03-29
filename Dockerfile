@@ -6,6 +6,7 @@ FROM ${BASE_IMAGE_NAME}:${BASE_IMAGE_TAG} AS builder
 
 COPY scripts/start-homepage.sh /scripts/
 
+ARG PNPM_VERSION
 ARG HOMEPAGE_VERSION
 
 # hadolint ignore=SC1091,SC3044
@@ -24,18 +25,19 @@ RUN \
         /root/homepage \
     # Set up dependencies first. \
     && pushd /root/homepage-deps \
-    && cp /root/homepage/{package.json,package-lock.json} . \
-    && npm ci --omit=dev --omit=optional --no-audit --no-fund --no-update-notifier \
-    && npm install \
+    && cp /root/homepage/{package.json,pnpm-lock.yaml} . \
+    && npm install -g pnpm@${PNPM_VERSION:?} \
+    && pnpm fetch \
+    && pnpm install -r --offline \
     && popd \
     # Build homepage. \
     && pushd /root/homepage \
     && cp -rf /root/homepage-deps/node_modules . \
-    && npm run telemetry \
+    && pnpm run telemetry \
     && NEXT_PUBLIC_BUILDTIME="$(date "+%FT%T.%3N%z")" \
         NEXT_PUBLIC_VERSION="${HOMEPAGE_VERSION:?}" \
         NEXT_PUBLIC_REVISION="$(git rev-parse --verify HEAD)" \
-        npm run build \
+        pnpm run build \
     # Copy the build artifacts. \
     && cp -rf ./.next/standalone /release \
     && cp -rf ./.next/static /release/.next/static \
